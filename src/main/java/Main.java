@@ -39,6 +39,16 @@ public class Main {
                 database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
 
                 System.out.println("Din helt er blevet gemt i databasen");
+
+                database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
+                for (Superhero superhero : database.getSuperhelte()){
+                    System.out.println("Superhelte navn: " + navn);
+                    System.out.println("Rigtige navn: " + rigtigeNavn);
+                    System.out.println("Menneske: " + menneske);
+                    System.out.println("Udgivelsesår: " + udgivelsesÅr);
+                    System.out.println("Styrke: " + styrke);
+
+                }
             } else if (menuvalg == 9) {
                 System.out.println("Programmet afsluttes");
             }
