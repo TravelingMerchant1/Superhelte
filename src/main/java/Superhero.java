@@ -32,4 +32,15 @@ public class Superhero {
     public double getStyrke() {
         return styrke;
     }
+
+    @Override
+    public String toString() {
+        return "Superhero{" +
+                "navn='" + navn + '\'' +
+                ", rigtigeNavn='" + rigtigeNavn + '\'' +
+                ", menneske=" + menneske +
+                ", udgivelsesÅr=" + udgivelsesÅr +
+                ", styrke=" + styrke +
+                '}';
+    }
 }

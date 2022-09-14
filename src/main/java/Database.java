@@ -2,28 +2,32 @@ import java.util.ArrayList;
 
 
 public class Database {
-    private ArrayList<Superhero> superhelte = new ArrayList<>();
+    private ArrayList<Superhero> superheroes = new ArrayList<>();
     public Database(ArrayList<Superhero> superhelte){
-        this.superhelte = superhelte;
+        this.superheroes = superhelte;
     }
 
     public void createSuperHero(String navn, String rigtigeNavn, boolean menneske, int udgivelsesÅr, double styrke) {
         Superhero helt = new Superhero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
-        superhelte.add(helt);
+        superheroes.add(helt);
     }
 
-    public ArrayList<Superhero> getSuperhelte() {
-        return superhelte;
+    public Superhero searchFor(String searchTerm) {
+        for (Superhero superhero : superheroes) {
+            if (superhero.getNavn().toLowerCase().contains(searchTerm.toLowerCase())) {
+                return superhero;
+            }
+        }
+        return null;
     }
 
-    public void setSuperhelte(ArrayList<Superhero> superhelte) {
-        this.superhelte = superhelte;
+
+    public ArrayList<Superhero> getSuperheroes() {
+        return superheroes;
     }
 
-    @Override
-    public String toString() {
-        return "Database{" +
-                "superhelte=" + superhelte +
-                '}';
+    public void setSuperhelte(ArrayList<Superhero> superheroes) {
+        this.superheroes = superheroes;
     }
+
 }
