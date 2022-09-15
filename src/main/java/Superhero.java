@@ -17,20 +17,40 @@ public class Superhero {
         return navn;
     }
 
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
     public String getRigtigeNavn() {
         return rigtigeNavn;
+    }
+
+    public void setRigtigeNavn(String rigtigeNavn) {
+        this.rigtigeNavn = rigtigeNavn;
     }
 
     public boolean isMenneske() {
         return menneske;
     }
 
+    public void setMenneske(boolean menneske) {
+        this.menneske = menneske;
+    }
+
     public int getUdgivelsesÅr() {
         return udgivelsesÅr;
     }
 
+    public void setUdgivelsesÅr(int udgivelsesÅr) {
+        this.udgivelsesÅr = udgivelsesÅr;
+    }
+
     public double getStyrke() {
         return styrke;
+    }
+
+    public void setStyrke(double styrke) {
+        this.styrke = styrke;
     }
 
     @Override
