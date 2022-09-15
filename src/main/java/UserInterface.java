@@ -14,8 +14,8 @@ public class UserInterface {
 
         do {
             System.out.println("1) For at oprette en ny Superhelt");
-            System.out.println("2) For at søge efter en Superhelt");
-            System.out.println("3) For at søge efter en specifik Superhelt");
+            System.out.println("2) For at søge efter en specifik Superhelt");
+            System.out.println("3) For at søge efter en Superhelt");
 
             System.out.println("9) for at afslutte");
             menuvalg = keyboard.nextInt();

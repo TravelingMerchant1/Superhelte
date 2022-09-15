@@ -29,9 +29,10 @@ public class Database {
                 søgeResultat.add(superhero);
             }
         }
-        if(!søgeResultat.isEmpty())
-            for(Superhero superhero :søgeResultat)
-                System.out.println(superhero);
+        if(!søgeResultat.isEmpty()) {
+            for(int i=0; i<søgeResultat.size(); i++)
+                System.out.println(i+1 +":"  + søgeResultat.get(i));
+        }
         else
             System.out.println("Der findes ingen personer i listen med navn: "+"\""+søgeResultat +"\"");
         return null;
