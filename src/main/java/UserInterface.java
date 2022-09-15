@@ -13,8 +13,9 @@ public class UserInterface {
         System.out.println("-----------------------------------------");
 
         do {
-            System.out.println("1) For at oprette en ny helt");
-            System.out.println("2) For at se listen over alle superhelte");
+            System.out.println("1) For at oprette en ny Superhelt");
+            System.out.println("2) For at søge efter en Superhelt");
+            System.out.println("3) For at søge efter en specifik Superhelt");
 
             System.out.println("9) for at afslutte");
             menuvalg = keyboard.nextInt();
@@ -58,6 +59,9 @@ public class UserInterface {
 
             } else if (menuvalg == 2) {
                 System.out.println(database.searchFor(keyboard.nextLine()));
+
+            } else if (menuvalg == 3) {
+                System.out.println(database.søgeNavn(keyboard.nextLine()));
 
             } else if (menuvalg == 9) {
                 System.out.println("Programmet afsluttes");

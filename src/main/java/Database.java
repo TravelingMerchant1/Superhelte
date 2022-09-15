@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Database {
     private ArrayList<Superhero> superheroes = new ArrayList<>();
-    public Database(ArrayList<Superhero> superhelte){
+
+    public Database(ArrayList<Superhero> superhelte) {
         this.superheroes = superhelte;
     }
 
@@ -18,6 +19,21 @@ public class Database {
                 return superhero;
             }
         }
+        return null;
+    }
+
+    public Superhero søgeNavn (String søgeNavn) {
+        ArrayList<Superhero> søgeResultat = new ArrayList<>();
+        for (Superhero superhero : superheroes) {
+            if (superhero.getNavn().contains(søgeNavn)) {
+                søgeResultat.add(superhero);
+            }
+        }
+        if(!søgeResultat.isEmpty())
+            for(Superhero superhero :søgeResultat)
+                System.out.println(superhero);
+        else
+            System.out.println("Der findes ingen personer i listen med navn: "+"\""+søgeResultat +"\"");
         return null;
     }
 
