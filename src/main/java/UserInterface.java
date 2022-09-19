@@ -16,6 +16,7 @@ public class UserInterface {
             System.out.println("1) For at oprette en ny Superhelt");
             System.out.println("2) For at søge efter en specifik Superhelt");
             System.out.println("3) For at søge efter en Superhelt");
+            System.out.println("4) For at redigere i Superhelte i databasen");
 
             System.out.println("9) for at afslutte");
             menuvalg = keyboard.nextInt();
@@ -32,7 +33,7 @@ public class UserInterface {
                 String human = keyboard.nextLine().charAt(0) + "";
                 if (human.equalsIgnoreCase("j")) {
                     menneske = true;
-                } else if (human.equalsIgnoreCase("n")){
+                } else if (human.equalsIgnoreCase("n")) {
                     menneske = false;
                 }
 
@@ -45,9 +46,8 @@ public class UserInterface {
                 keyboard.nextLine();
 
                 System.out.println("Din helt er blevet gemt i databasen");
-
                 database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
-                for (Superhero superhero : database.getSuperheroes()){
+                for (Superhero superhero : database.getSuperheroes()) {
                     System.out.println("---------------------------------");
                     System.out.println("Superhelte navn: " + navn);
                     System.out.println("Rigtige navn: " + rigtigeNavn);
@@ -57,14 +57,19 @@ public class UserInterface {
                     System.out.println("---------------------------------");
                 }
 
+
             } else if (menuvalg == 2) {
                 System.out.println(database.searchFor(keyboard.nextLine()));
 
             } else if (menuvalg == 3) {
                 System.out.println(database.søgeNavn(keyboard.nextLine()));
 
+            } else if (menuvalg == 4) {
+                System.out.println(database.redigerHelt());
+
             } else if (menuvalg == 9) {
                 System.out.println("Programmet afsluttes");
+
             }
 
         } while (menuvalg != 9);
