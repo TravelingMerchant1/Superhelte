@@ -12,17 +12,6 @@ public class Database {
         Superhero helt = new Superhero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
         superheroes.add(helt);
     }
-/*
-    public Superhero searchFor(String searchTerm) {
-        for (Superhero superhero : superheroes) {
-            if (superhero.getNavn().toLowerCase().contains(searchTerm.toLowerCase())) {
-                return superhero;
-            }
-        }
-        return null;
-    }
- */
-
 
     public ArrayList<Superhero> søgeNavn(String søgeNavn) {
 
@@ -37,8 +26,6 @@ public class Database {
         }
         return søgeResultat;
     }
-
-
 
     public ArrayList<Superhero> getSuperheroes() {
         return superheroes;

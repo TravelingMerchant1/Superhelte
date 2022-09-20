@@ -20,6 +20,18 @@ public class UserInterface {
             System.out.println("3) For at redigere i Superhelte i databasen");
 
             System.out.println("9) for at afslutte");
+
+            while (!keyboard.hasNextInt()) {
+                String text = keyboard.nextLine();
+                System.out.println(text + " er ikke gyldigt. Vælg et tal fra menuen");
+            }
+
+            while (keyboard.nextInt() != menuvalg) {
+                int text = keyboard.nextInt();
+                keyboard.nextLine();
+                System.out.println(text + " er ikke et nummer på menuen. Vælg en fra menuen");
+            }
+
             menuvalg = keyboard.nextInt();
             keyboard.nextLine(); //Fix for Scanner Bug
 
@@ -41,8 +53,8 @@ public class UserInterface {
         } while (menuvalg != 9);
     }
 
-    public void registrerHelt () {
-        System.out.println("Lad os starte med at få et navn på din superhelt? (Enten superhelte navn eller normal navn)");
+    public void registrerHelt() {
+        System.out.println("Lad os starte med at få et navn på din superhelt?");
         String navn = keyboard.nextLine();
 
         System.out.println("Hvad er superheltens rigtige navn?");
@@ -76,51 +88,33 @@ public class UserInterface {
             System.out.println("---------------------------------");
         }
     }
-    
-    public void searchFor () {
+
+    public void searchFor() {
         ArrayList<Superhero> fundet = new ArrayList<>();
         ArrayList<Superhero> heroes = database.getSuperheroes();
         String search = keyboard.nextLine();
         int count = 0;
         for (int i = 0; i < heroes.size(); i++) {
-            if (heroes.get(i).getNavn().contains(search)) { count++;
+            if (heroes.get(i).getNavn().contains(search)) {
+                count++;
                 fundet.add(heroes.get(i));
             }
         }
         System.out.println("Antal helte fundet: " + count);
         System.out.println(fundet);
 
-
-
-
-
-
-
-
-
-
-            /*
-            if (heroes.isEmpty()) {
-                System.out.println("Det du har indtastet findes ikke i databasen");
-            } else if (heroes.size() == 1) {
-                System.out.println("Der er blevet fundet en helt med samme søgeterm: ");
-            } else if (heroes.size() > 1) {
-                System.out.println("Der er blevet fundet flere helte med dit søgeterm: ");
-            }
-             */
-
     }
-    
-    public void redigerHelt () {
-        for (int i=0; i<database.getSuperheroes().size(); i++) {
-            System.out.println(i+1 +":"  + database.getSuperheroes().get(i));
+
+    public void redigerHelt() {
+        for (int i = 0; i < database.getSuperheroes().size(); i++) {
+            System.out.println(i + 1 + ":" + database.getSuperheroes().get(i));
         }
 
         System.out.println("indtast nr på den person der skal redigeres:");
         int nr = keyboard.nextInt();
         keyboard.nextLine();
 
-        Superhero editPerson = database.getSuperheroes().get(nr-1); // index starter fra 0
+        Superhero editPerson = database.getSuperheroes().get(nr - 1); // index starter fra 0
         System.out.println("Editperson: " + editPerson);
 
         System.out.println("Rediger data og tryk ENTER. Hvis data ikke skal redigeres tryk ENTER");
@@ -153,6 +147,6 @@ public class UserInterface {
         if (!nyStyrke.isEmpty()) {
             editPerson.setStyrke(Double.parseDouble(nyStyrke));
         }
-        
+
     }
 }
