@@ -20,17 +20,19 @@ public class UserInterface {
             System.out.println("3) For at redigere i Superhelte i databasen");
 
             System.out.println("9) for at afslutte");
-
+/*
             while (!keyboard.hasNextInt()) {
                 String text = keyboard.nextLine();
                 System.out.println(text + " er ikke gyldigt. Vælg et tal fra menuen");
             }
 
-            while (keyboard.nextInt() != menuvalg) {
+            while (keyboard.nextInt() == menuvalg) {
                 int text = keyboard.nextInt();
                 keyboard.nextLine();
                 System.out.println(text + " er ikke et nummer på menuen. Vælg en fra menuen");
             }
+
+ */
 
             menuvalg = keyboard.nextInt();
             keyboard.nextLine(); //Fix for Scanner Bug
@@ -56,6 +58,7 @@ public class UserInterface {
     public void registrerHelt() {
         System.out.println("Lad os starte med at få et navn på din superhelt?");
         String navn = keyboard.nextLine();
+
 
         System.out.println("Hvad er superheltens rigtige navn?");
         String rigtigeNavn = keyboard.nextLine();

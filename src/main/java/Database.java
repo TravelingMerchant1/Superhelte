@@ -13,20 +13,6 @@ public class Database {
         superheroes.add(helt);
     }
 
-    public ArrayList<Superhero> søgeNavn(String søgeNavn) {
-
-        ArrayList<Superhero> søgeResultat = new ArrayList<>();
-
-        for (Superhero superhero : superheroes) {
-            if (!søgeResultat.isEmpty()) {
-                System.out.println("Der findes ingen personer i listen med det søgeterm");
-            }else if (superhero.getNavn().contains(søgeNavn)) {
-                søgeResultat.add(superhero);
-            }
-        }
-        return søgeResultat;
-    }
-
     public ArrayList<Superhero> getSuperheroes() {
         return superheroes;
     }
