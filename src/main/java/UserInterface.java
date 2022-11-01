@@ -6,7 +6,8 @@ public class UserInterface {
     Scanner keyboard = new Scanner(System.in);
     int menuvalg;
     ArrayList<Superhero> superhelte = new ArrayList<>();
-    Database database = new Database(superhelte);
+    //Database database = new Database(superhelte);
+    Controller controller = new Controller();
     boolean menneske = true;
 
     public void startProgram() {
@@ -80,8 +81,8 @@ public class UserInterface {
         keyboard.nextLine();
 
         System.out.println("Din helt er blevet gemt i databasen");
-        database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
-        for (Superhero superhero : database.getSuperheroes()) {
+        controller.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
+        for (Superhero superhero : controller.getSuperheroes()) {
             System.out.println("---------------------------------");
             System.out.println("Superhelte navn: " + navn);
             System.out.println("Rigtige navn: " + rigtigeNavn);
@@ -94,7 +95,7 @@ public class UserInterface {
 
     public void searchFor() {
         ArrayList<Superhero> fundet = new ArrayList<>();
-        ArrayList<Superhero> heroes = database.getSuperheroes();
+        ArrayList<Superhero> heroes = controller.getSuperheroes();
         String search = keyboard.nextLine();
         int count = 0;
         for (int i = 0; i < heroes.size(); i++) {
@@ -109,15 +110,15 @@ public class UserInterface {
     }
 
     public void redigerHelt() {
-        for (int i = 0; i < database.getSuperheroes().size(); i++) {
-            System.out.println(i + 1 + ":" + database.getSuperheroes().get(i));
+        for (int i = 0; i < controller.getSuperheroes().size(); i++) {
+            System.out.println(i + 1 + ":" + controller.getSuperheroes().get(i));
         }
 
         System.out.println("indtast nr på den person der skal redigeres:");
         int nr = keyboard.nextInt();
         keyboard.nextLine();
 
-        Superhero editPerson = database.getSuperheroes().get(nr - 1); // index starter fra 0
+        Superhero editPerson = controller.getSuperheroes().get(nr - 1); // index starter fra 0
         System.out.println("Editperson: " + editPerson);
 
         System.out.println("Rediger data og tryk ENTER. Hvis data ikke skal redigeres tryk ENTER");

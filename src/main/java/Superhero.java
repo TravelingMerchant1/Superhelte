@@ -52,15 +52,4 @@ public class Superhero {
     public void setStyrke(double styrke) {
         this.styrke = styrke;
     }
-
-    @Override
-    public String toString() {
-        return "Superhero{" +
-                "navn='" + navn + '\'' +
-                ", rigtigeNavn='" + rigtigeNavn + '\'' +
-                ", menneske=" + menneske +
-                ", udgivelsesÅr=" + udgivelsesÅr +
-                ", styrke=" + styrke +
-                '}';
-    }
 }
