@@ -19,6 +19,7 @@ public class UserInterface {
             System.out.println("1) For at oprette en ny Superhelt");
             System.out.println("2) For at søge efter en Superhelt");
             System.out.println("3) For at redigere i Superhelte i databasen");
+            System.out.println("4) For at se gemme dine Superhelteil");
 
             System.out.println("9) for at afslutte");
 /*
@@ -47,6 +48,9 @@ public class UserInterface {
 
             } else if (menuvalg == 3) {
                 redigerHelt();
+
+            } else if (menuvalg == 4) {
+                controller.saveData();
 
             } else if (menuvalg == 9) {
                 System.out.println("Programmet afsluttes");

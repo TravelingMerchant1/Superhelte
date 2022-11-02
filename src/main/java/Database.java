@@ -8,6 +8,10 @@ public class Database {
         this.superheroes = superhelte;
     }
 
+    public Database() {
+
+    }
+
     public void createSuperHero(String navn, String rigtigeNavn, boolean menneske, int udgivelsesÅr, double styrke) {
         Superhero helt = new Superhero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
         superheroes.add(helt);
@@ -20,5 +24,9 @@ public class Database {
     public void setSuperhelte(ArrayList<Superhero> superheroes) {
         this.superheroes = superheroes;
     }
+
+
+
+
 
 }
