@@ -1,37 +1,47 @@
-import javax.xml.crypto.Data;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
+import java.util.Collections;
 
 public class Controller {
-    File file = new File("superHeroes.csv");
     Database database = new Database();
-    FileHandler fileHandler;
+    FileHandler fileHandler = new FileHandler();
 
-    {
-        try {
-            fileHandler = new FileHandler();
-        } catch (IOException e) {
-            System.out.println("Virkede ikke");
-        }
+    public Controller() throws IOException {
     }
 
-    public void createSuperHero(String navn, String rigtigeNavn, boolean menneske, int udgivelsesÅr, double styrke) {
-        database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
+    public Superhero createSuperHero(String navn, String rigtigeNavn, boolean menneske, int udgivelsesÅr, double styrke) {
+        return database.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
     }
 
     public ArrayList<Superhero> getSuperheroes() {
-        return getSuperheroes();
+        return database.getSuperheroes();
     }
 
-    public void saveData(){
+    public void sorteretEfterNavn() {
+        Collections.sort(database.getSuperheroes(), new NavnComparator());
+    }
+
+    public void sorteretEfterRigtigeNavn() {
+        Collections.sort(database.getSuperheroes(), new RigtigeNavnComparator());
+    }
+
+    public void sorteretEfterMenneske() {
+        Collections.sort(database.getSuperheroes(), new MenneskeComparator());
+    }
+
+    public void sorteretEfterUdgivelsesÅr() {
+        Collections.sort(database.getSuperheroes(), new UdgivelsesårComparator());
+    }
+
+    public void sorteretEfterStyrke() {
+        Collections.sort(database.getSuperheroes(), new StyrkeComparator());
+    }
+
+    public void saveData() throws FileNotFoundException {
         // Få data (superheroes) fra Database
         database.getSuperheroes();
         // Bed FileHandler om at save de data
-
-
+        fileHandler.saveHeroes(getSuperheroes());
     }
-
 }

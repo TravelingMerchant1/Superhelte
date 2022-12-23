@@ -1,66 +1,86 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class UserInterface {
-    Scanner keyboard = new Scanner(System.in);
-    int menuvalg;
-    ArrayList<Superhero> superhelte = new ArrayList<>();
-    //Database database = new Database(superhelte);
+    private int menuvalg;
+    private boolean menneske = true;
+    private Scanner keyboard = new Scanner(System.in);
     Controller controller = new Controller();
-    boolean menneske = true;
 
-    public void startProgram() {
-
-        System.out.println("Velkommen til din SuperHelt database");
-        System.out.println("-----------------------------------------");
-
-        do {
-            System.out.println("1) For at oprette en ny Superhelt");
-            System.out.println("2) For at søge efter en Superhelt");
-            System.out.println("3) For at redigere i Superhelte i databasen");
-            System.out.println("4) For at se gemme dine Superhelteil");
-
-            System.out.println("9) for at afslutte");
-/*
-            while (!keyboard.hasNextInt()) {
-                String text = keyboard.nextLine();
-                System.out.println(text + " er ikke gyldigt. Vælg et tal fra menuen");
-            }
-
-            while (keyboard.nextInt() == menuvalg) {
-                int text = keyboard.nextInt();
-                keyboard.nextLine();
-                System.out.println(text + " er ikke et nummer på menuen. Vælg en fra menuen");
-            }
-
- */
-
-            menuvalg = keyboard.nextInt();
-            keyboard.nextLine(); //Fix for Scanner Bug
-
-
-            if (menuvalg == 1) {
-                registrerHelt();
-
-            } else if (menuvalg == 2) {
-                searchFor();
-
-            } else if (menuvalg == 3) {
-                redigerHelt();
-
-            } else if (menuvalg == 4) {
-                controller.saveData();
-
-            } else if (menuvalg == 9) {
-                System.out.println("Programmet afsluttes");
-
-            }
-
-        } while (menuvalg != 9);
+    public UserInterface() throws IOException {
     }
 
-    public void registrerHelt() {
+
+    public void menu() throws IOException {
+        System.out.println("Velkommen til din SuperHelt database");
+        System.out.println("-----------------------------------------");
+        System.out.println("1) Opret en ny Superhelt");
+        System.out.println("2) Søg efter en Superhelt");
+        System.out.println("3) Rediger i Superhelte");
+        System.out.println("4) Se alle dine helte i alfabetisk rækkefølge");
+        System.out.println("5) Sorteringsmenu");
+        System.out.println("6) Gem dine Superhelte");
+        System.out.println("9) for at afslutte");
+        startMenuInput();
+    }
+
+    public void startMenuInput() throws IOException {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                makeHero();
+                break;
+            case 2:
+                searchForHero();
+                break;
+            case 3:
+                editHero();
+                break;
+            case 4:
+                printHero();
+                break;
+            case 5:
+                sorteringsMenu();
+                break;
+            case 6:
+                saveHero();
+                break;
+            case 9:
+                closeProgram();
+                break;
+        }
+    }
+
+    public void sorteringsMenu() {
+        System.out.println("1) sorter efter rigtige navn");
+        System.out.println("2) sorter efter om de er menneske");
+        System.out.println("3) sorter efter superheltens udgivelsesår");
+        System.out.println("4) sorter efter superheltens styrke");
+        sorteringsMenuInput();
+    }
+
+    public void sorteringsMenuInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretEfterRigtigeNavn();
+                break;
+            case 2:
+                sorteretEfterMenneske();
+                break;
+            case 3:
+                sorteretEfterUdgivelsesÅr();
+                break;
+            case 4:
+                sorteretEfterStyrke();
+                break;
+        }
+    }
+
+
+    public void makeHero() {
         System.out.println("Lad os starte med at få et navn på din superhelt?");
         String navn = keyboard.nextLine();
 
@@ -68,7 +88,7 @@ public class UserInterface {
         System.out.println("Hvad er superheltens rigtige navn?");
         String rigtigeNavn = keyboard.nextLine();
 
-        System.out.println("Er din superhelt et menneske eller ej? (Svar: true/false)");
+        System.out.println("Er din superhelt et menneske eller ej? (Svar: ja/nej)");
         String human = keyboard.nextLine().charAt(0) + "";
         if (human.equalsIgnoreCase("j")) {
             menneske = true;
@@ -84,20 +104,14 @@ public class UserInterface {
         double styrke = keyboard.nextDouble();
         keyboard.nextLine();
 
-        System.out.println("Din helt er blevet gemt i databasen");
+        System.out.println("Din helt er blevet gemt");
         controller.createSuperHero(navn, rigtigeNavn, menneske, udgivelsesÅr, styrke);
-        for (Superhero superhero : controller.getSuperheroes()) {
-            System.out.println("---------------------------------");
-            System.out.println("Superhelte navn: " + navn);
-            System.out.println("Rigtige navn: " + rigtigeNavn);
-            System.out.println("Menneske: " + menneske);
-            System.out.println("Udgivelsesår: " + udgivelsesÅr);
-            System.out.println("Styrke: " + styrke);
-            System.out.println("---------------------------------");
+        for (Superhero udskrivSuperhelte : controller.getSuperheroes()) {
+            seeHero(udskrivSuperhelte);
         }
     }
 
-    public void searchFor() {
+    public void searchForHero() {
         ArrayList<Superhero> fundet = new ArrayList<>();
         ArrayList<Superhero> heroes = controller.getSuperheroes();
         String search = keyboard.nextLine();
@@ -113,7 +127,7 @@ public class UserInterface {
 
     }
 
-    public void redigerHelt() {
+    public void editHero() {
         for (int i = 0; i < controller.getSuperheroes().size(); i++) {
             System.out.println(i + 1 + ":" + controller.getSuperheroes().get(i));
         }
@@ -155,6 +169,66 @@ public class UserInterface {
         if (!nyStyrke.isEmpty()) {
             editPerson.setStyrke(Double.parseDouble(nyStyrke));
         }
-
     }
+
+    public void printHero() {
+        controller.sorteretEfterNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretEfterRigtigeNavn() {
+        controller.sorteretEfterRigtigeNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretEfterMenneske() {
+        controller.sorteretEfterMenneske();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretEfterUdgivelsesÅr() {
+        controller.sorteretEfterUdgivelsesÅr();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretEfterStyrke() {
+        controller.sorteretEfterStyrke();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void saveHero() throws FileNotFoundException {
+        System.out.println("Din helt er blevet gemt i vores database");
+        System.out.println(" ");
+        controller.saveData();
+    }
+
+    public void seeHero(Superhero superhero) {
+        System.out.println("---------------------------------");
+        System.out.println("Superhelte navn: " + superhero.getNavn());
+        System.out.println("Rigtige navn: " + superhero.getNavn());
+        System.out.println("Menneske: " + superhero.isMenneske());
+        System.out.println("Udgivelsesår: " + superhero.getUdgivelsesÅr());
+        System.out.println("Styrke: " + superhero.getStyrke());
+    }
+
+    public void closeProgram() {
+        System.out.println("Du aflsutter nu programmet");
+        System.exit(0);
+    }
+
+    public void menuValgInput() {
+        menuvalg = keyboard.nextInt();
+        keyboard.nextLine();
+    }
+
 }
