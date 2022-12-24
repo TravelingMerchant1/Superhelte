@@ -1,7 +1,5 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Database {
     private ArrayList<Superhero> superheroes = new ArrayList<>();
@@ -55,9 +53,6 @@ public class Database {
     public void setSuperhelte(ArrayList<Superhero> superheroes) {
         this.superheroes = superheroes;
     }
-
-
-
 
 
 }

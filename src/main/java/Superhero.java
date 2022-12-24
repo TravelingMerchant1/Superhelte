@@ -1,17 +1,9 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
-
 public class Superhero {
     private String navn;
     private String rigtigeNavn;
     private boolean menneske;
     private int udgivelsesÅr;
     private double styrke;
-
 
 
     public Superhero(String navn, String rigtigeNavn, boolean menneske, int udgivelsesÅr, double styrke) {

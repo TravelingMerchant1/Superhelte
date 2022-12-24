@@ -48,20 +48,44 @@ public class UserInterface {
                 saveHero();
                 break;
             case 9:
-                closeProgram();
+                exitProgram();
                 break;
         }
     }
 
-    public void sorteringsMenu() {
+    public void sorteringsMenu() throws IOException {
+        System.out.println("1) Sorter efter en attribut");
+        System.out.println("2) Sorter efter flere attributter");
+        System.out.println("9) Tilbage til menu");
+        sorteringsMenuInput();
+    }
+
+    public void sorteringsMenuInput() throws IOException {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                enkelSorteringsMenu();
+                break;
+            case 2:
+                flereSorteringsMenu();
+                break;
+            case 3:
+                menu();
+                break;
+        }
+    }
+
+    public void enkelSorteringsMenu() throws IOException {
         System.out.println("1) sorter efter rigtige navn");
         System.out.println("2) sorter efter om de er menneske");
         System.out.println("3) sorter efter superheltens udgivelsesår");
         System.out.println("4) sorter efter superheltens styrke");
-        sorteringsMenuInput();
+        System.out.println("9) Tilbage til menu");
+        enkelSorteringsMenuInput();
     }
 
-    public void sorteringsMenuInput() {
+
+    public void enkelSorteringsMenuInput() throws IOException {
         menuValgInput();
         switch (menuvalg) {
             case 1:
@@ -76,10 +100,184 @@ public class UserInterface {
             case 4:
                 sorteretEfterStyrke();
                 break;
+            case 9:
+                menu();
+                break;
         }
     }
 
+    public void flereSorteringsMenu() {
+        System.out.println("Hvad skal den primære sorterings attribut være?");
+        System.out.println("1) Navn");
+        System.out.println("2) Rigtige navn");
+        System.out.println("3) Menneske");
+        System.out.println("4) Udgivelsesår");
+        System.out.println("5) Styrke");
+        flereSorteringsMenuInput();
+    }
 
+    public void flereSorteringsMenuInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                primærAttributNavn();
+                break;
+            case 2:
+                primærAttributRigtigeNavn();
+                break;
+            case 3:
+                primærAttributMenneske();
+                break;
+            case 4:
+                primærAttributUdgivelsesår();
+                break;
+            case 5:
+                primærAttributStyrke();
+                break;
+        }
+    }
+
+    //Menu til sortering af primære Navn
+    public void primærAttributNavn() {
+        System.out.println("Hvad skal den sekundære attribut være?");
+        System.out.println("1) Rigtige navn");
+        System.out.println("2) Menneske");
+        System.out.println("3) Udgivelsesår");
+        System.out.println("4) Styrke");
+        primærAttributNavnInput();
+    }
+
+    public void primærAttributNavnInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretNavnOgRigtigeNavn();
+                break;
+            case 2:
+                sorteretNavnOgMenneske();
+                break;
+            case 3:
+                sorteretEfterUdgivelsesÅr();
+                break;
+            case 4:
+                sorteretNavnOgUdgivelsesår();
+                break;
+        }
+    }
+
+    //Menu til sortering af primære attribut Rigtige Navn
+    public void primærAttributRigtigeNavn() {
+        System.out.println("Hvad skal den sekundære attribut være?");
+        System.out.println("1) Navn");
+        System.out.println("2) Menneske");
+        System.out.println("3) Udgivelsesår");
+        System.out.println("4) Styrke");
+        primærAttributRigtigeNavnInput();
+    }
+
+    public void primærAttributRigtigeNavnInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretRigtigeNavnOgNavn();
+                break;
+            case 2:
+                sorteretRigtigeNavnOgMenneske();
+                break;
+            case 3:
+                sorteretRigtigeNavnOgUdgivelsesår();
+                break;
+            case 4:
+                sorteretRigtigeNavnOgStyrke();
+                break;
+        }
+    }
+
+    //Menu til sortering af primære attribut Menneske
+    public void primærAttributMenneske() {
+        System.out.println("Hvad skal den sekundære attribut være?");
+        System.out.println("1) Navn");
+        System.out.println("2) Rigtige navn");
+        System.out.println("3) Udgivelsesår");
+        System.out.println("4) Styrke");
+        primærAttributMenneskeInput();
+    }
+
+    public void primærAttributMenneskeInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretMenneskeOgNavn();
+                break;
+            case 2:
+                sorteretMenneskeOgRigtigeNavn();
+                break;
+            case 3:
+                sorteretMenneskeOgUdgivelsesår();
+                break;
+            case 4:
+                sorteretMennekseOgStyrke();
+                break;
+        }
+    }
+
+    //Menu til sortering af primære attribut Udgivelsesår
+    public void primærAttributUdgivelsesår() {
+        System.out.println("Hvad skal den sekundære attribut være?");
+        System.out.println("1) Navn");
+        System.out.println("2) Rigtige navn");
+        System.out.println("3) Menneske");
+        System.out.println("4) Styrke");
+        primærAttributUdgivelsesårInput();
+    }
+
+    public void primærAttributUdgivelsesårInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretUdgivelsesårOgNavn();
+                break;
+            case 2:
+                sorteretUdgivelsesårOgRigtigeNavn();
+                break;
+            case 3:
+                sorteretUdgivelsesårOgMenneske();
+                break;
+            case 4:
+                sorteretUdgivelsesårOgStyrke();
+                break;
+        }
+    }
+
+    //Menu til sortering af primære attribut Styrke
+    public void primærAttributStyrke() {
+        System.out.println("Hvad skal den sekundære attribut være?");
+        System.out.println("1) Navn");
+        System.out.println("2) Rigtige navn");
+        System.out.println("3) Udgivelsesår");
+        System.out.println("4) Styrke");
+        primærAttributStyrkeInput();
+    }
+
+    public void primærAttributStyrkeInput() {
+        menuValgInput();
+        switch (menuvalg) {
+            case 1:
+                sorteretStyrkeOgNavn();
+                break;
+            case 2:
+                sorteretStyrkeOgRigtigeNavn();
+                break;
+            case 3:
+                sorteretStyrkeOgMenneske();
+                break;
+            case 4:
+                sorteretStyrkeOgUdgivelsesår();
+                break;
+        }
+    }
+
+    //CRUD
     public void makeHero() {
         System.out.println("Lad os starte med at få et navn på din superhelt?");
         String navn = keyboard.nextLine();
@@ -171,6 +369,8 @@ public class UserInterface {
         }
     }
 
+
+
     public void printHero() {
         controller.sorteretEfterNavn();
         for (Superhero superhero : controller.getSuperheroes()) {
@@ -178,6 +378,32 @@ public class UserInterface {
         }
     }
 
+    public void saveHero() throws FileNotFoundException {
+        System.out.println("Din helt er blevet gemt i vores database");
+        System.out.println(" ");
+        controller.saveData();
+    }
+
+    public void seeHero(Superhero superhero) {
+        System.out.println("---------------------------------");
+        System.out.println("Superhelte navn: " + superhero.getNavn());
+        System.out.println("Rigtige navn: " + superhero.getNavn());
+        System.out.println("Menneske: " + superhero.isMenneske());
+        System.out.println("Udgivelsesår: " + superhero.getUdgivelsesÅr());
+        System.out.println("Styrke: " + superhero.getStyrke());
+    }
+
+    public void menuValgInput() {
+        menuvalg = keyboard.nextInt();
+        keyboard.nextLine();
+    }
+
+    public void exitProgram() {
+        System.out.println("Du aflsutter nu programmet");
+        System.exit(0);
+    }
+
+    //Sorteringen efter enkel attribut
     public void sorteretEfterRigtigeNavn() {
         controller.sorteretEfterRigtigeNavn();
         for (Superhero superhero : controller.getSuperheroes()) {
@@ -206,29 +432,149 @@ public class UserInterface {
         }
     }
 
-    public void saveHero() throws FileNotFoundException {
-        System.out.println("Din helt er blevet gemt i vores database");
-        System.out.println(" ");
-        controller.saveData();
+    //Sorter efter flere attributter
+    //Primære sortering Navn
+    public void sorteretNavnOgRigtigeNavn() {
+        controller.sorterNavnOgRigtigeNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
     }
 
-    public void seeHero(Superhero superhero) {
-        System.out.println("---------------------------------");
-        System.out.println("Superhelte navn: " + superhero.getNavn());
-        System.out.println("Rigtige navn: " + superhero.getNavn());
-        System.out.println("Menneske: " + superhero.isMenneske());
-        System.out.println("Udgivelsesår: " + superhero.getUdgivelsesÅr());
-        System.out.println("Styrke: " + superhero.getStyrke());
+    public void sorteretNavnOgMenneske() {
+        controller.sorterNavnOgMenneske();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
     }
 
-    public void closeProgram() {
-        System.out.println("Du aflsutter nu programmet");
-        System.exit(0);
+    public void sorteretNavnOgUdgivelsesår() {
+        controller.sorterNavnOgUdgivelsesår();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
     }
 
-    public void menuValgInput() {
-        menuvalg = keyboard.nextInt();
-        keyboard.nextLine();
+    public void sorteretNavnOgStyrke() {
+        controller.sorterNavnOgStyrke();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
     }
 
+    //Primære sortering efter Rigtige navn
+    public void sorteretRigtigeNavnOgNavn() {
+        controller.sorterRigtigeNavnOgNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretRigtigeNavnOgMenneske() {
+        controller.sorterRigtigeNavnOgMenneske();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretRigtigeNavnOgUdgivelsesår() {
+        controller.sorterRigtigeNavnOgUdgivelsesår();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretRigtigeNavnOgStyrke() {
+        controller.sorterRigtigeNavnOgStyrke();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    //Primære sortering Menneske
+    public void sorteretMenneskeOgNavn() {
+        controller.sorterMenneskeOgNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretMenneskeOgRigtigeNavn() {
+        controller.sorterMenneskeOgRigtigeNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretMenneskeOgUdgivelsesår() {
+        controller.sorterMenneskeOgUdgivelsesår();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretMennekseOgStyrke() {
+        controller.sorterMenneskeOgStyrke();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    //Primære sortering Udgivelsesår
+    public void sorteretUdgivelsesårOgNavn() {
+        controller.sorterUdgivelsesårOgNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretUdgivelsesårOgRigtigeNavn() {
+        controller.sorterUdgivelsesårOgRigtigeNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretUdgivelsesårOgMenneske() {
+        controller.sorterUdgivelsesårOgMenneske();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretUdgivelsesårOgStyrke() {
+        controller.sorterUdgivelsesårOgStyrke();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    //Primære sortering Styrke
+    public void sorteretStyrkeOgNavn() {
+        controller.sorterStyrkeOgNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretStyrkeOgRigtigeNavn() {
+        controller.sorterStyrkeOgRigtigeNavn();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretStyrkeOgMenneske() {
+        controller.sorterStyrkeOgMenneske();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
+
+    public void sorteretStyrkeOgUdgivelsesår() {
+        controller.sorterStyrkeOgUdgivelsesår();
+        for (Superhero superhero : controller.getSuperheroes()) {
+            seeHero(superhero);
+        }
+    }
 }
