@@ -18,10 +18,11 @@ public class UserInterface {
         System.out.println("-----------------------------------------");
         System.out.println("1) Opret en ny Superhelt");
         System.out.println("2) Søg efter en Superhelt");
-        System.out.println("3) Rediger i Superhelte");
-        System.out.println("4) Se alle dine helte i alfabetisk rækkefølge");
-        System.out.println("5) Sorteringsmenu");
-        System.out.println("6) Gem dine Superhelte");
+        System.out.println("3) Rediger Superhelt");
+        System.out.println("4) Slet Superhelt");
+        System.out.println("5) Se alle dine helte i alfabetisk rækkefølge");
+        System.out.println("6) Sorteringsmenu");
+        System.out.println("7) Gem dine Superhelte");
         System.out.println("9) for at afslutte");
         startMenuInput();
     }
@@ -39,12 +40,15 @@ public class UserInterface {
                 editHero();
                 break;
             case 4:
-                printHero();
+                deleteHero();
                 break;
             case 5:
-                sorteringsMenu();
+                printHero();
                 break;
             case 6:
+                sorteringsMenu();
+                break;
+            case 7:
                 saveHero();
                 break;
             case 9:
@@ -369,38 +373,24 @@ public class UserInterface {
         }
     }
 
+    public void deleteHero() {
+        for (int i = 0; i < controller.getSuperheroes().size(); i++) {
+            System.out.println(i + 1 + ":" + controller.getSuperheroes().get(i));
+        }
 
+        System.out.println("indtast nummer på medlem der skal slettes:");
+        int nr = keyboard.nextInt();
+        keyboard.nextLine();
+
+        Superhero sletSuperhero = controller.getSuperheroes().remove(nr - 1); // index starter fra 0
+        System.out.println("Medlem " + sletSuperhero + " er slettet fra systemet");
+    }
 
     public void printHero() {
         controller.sorteretEfterNavn();
         for (Superhero superhero : controller.getSuperheroes()) {
             seeHero(superhero);
         }
-    }
-
-    public void saveHero() throws FileNotFoundException {
-        System.out.println("Din helt er blevet gemt i vores database");
-        System.out.println(" ");
-        controller.saveData();
-    }
-
-    public void seeHero(Superhero superhero) {
-        System.out.println("---------------------------------");
-        System.out.println("Superhelte navn: " + superhero.getNavn());
-        System.out.println("Rigtige navn: " + superhero.getNavn());
-        System.out.println("Menneske: " + superhero.isMenneske());
-        System.out.println("Udgivelsesår: " + superhero.getUdgivelsesÅr());
-        System.out.println("Styrke: " + superhero.getStyrke());
-    }
-
-    public void menuValgInput() {
-        menuvalg = keyboard.nextInt();
-        keyboard.nextLine();
-    }
-
-    public void exitProgram() {
-        System.out.println("Du aflsutter nu programmet");
-        System.exit(0);
     }
 
     //Sorteringen efter enkel attribut
@@ -576,5 +566,31 @@ public class UserInterface {
         for (Superhero superhero : controller.getSuperheroes()) {
             seeHero(superhero);
         }
+    }
+
+    //Funktionalitet
+    public void saveHero() throws FileNotFoundException {
+        System.out.println("Din helt er blevet gemt i vores database");
+        System.out.println(" ");
+        controller.saveData();
+    }
+
+    public void seeHero(Superhero superhero) {
+        System.out.println("---------------------------------");
+        System.out.println("Superhelte navn: " + superhero.getNavn());
+        System.out.println("Rigtige navn: " + superhero.getNavn());
+        System.out.println("Menneske: " + superhero.isMenneske());
+        System.out.println("Udgivelsesår: " + superhero.getUdgivelsesÅr());
+        System.out.println("Styrke: " + superhero.getStyrke());
+    }
+
+    public void menuValgInput() {
+        menuvalg = keyboard.nextInt();
+        keyboard.nextLine();
+    }
+
+    public void exitProgram() {
+        System.out.println("Du aflsutter nu programmet");
+        System.exit(0);
     }
 }
